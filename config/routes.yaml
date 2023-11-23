@@ -4,3 +4,7 @@ controllers:
 client :
     path : /client/prenom/{prenom}
     controller : App\Controller\ClientController::info
+image_data:
+    path: /img/data/{imageName}
+    controller: App\Controller\ImageController::affiche
+
