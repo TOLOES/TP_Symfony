@@ -1,0 +1,7 @@
+<ul>
+    {% for img in images %}
+        <li>
+            <a href="{{ path('image_data', {'imageName': img|split('.')[0]}) }}">{{ img }}</a>
+        </li>
+    {% endfor %}
+</ul>
