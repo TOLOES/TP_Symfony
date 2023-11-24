@@ -12,4 +12,12 @@ clientAccess:
     controller: App\Controller\ClientController::home
     options:
         ouverture: '9-17'
+registration:
+    path: /register
+    controller: App\Controller\EnregisterController::register
+    methods: ['GET', 'POST']
 
+user_profile:
+    path: /profile/{login}
+    controller: App\Controller\EnregisterController::userProfile
+    methods: ['GET']
