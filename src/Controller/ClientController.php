@@ -9,13 +9,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ClientController
 {
-    /**
-     * @Route("/client/prenom/{prenom}", name="client_info", requirements={"prenom"="[a-zA-Z]+(?:-[a-zA-Z]+)*-*"})
-     */
+
     public function info(string $prenom): Response
     {
-        if (substr($prenom, -1) === '-' || $prenom[0] === '-') {
-            return new Response("Le prénom ne peut pas commencer ou se terminer par un tiret.");
+        if (substr($prenom, -1) === '-' || $prenom[0] === '-' || preg_match('/\d/', $prenom)) {
+            return new Response("Le prénom ne peut pas commencer ou se terminer par un tiret et ne doit pas contenir de chiffres.");
         }
 
         return new Response("Prénom : " . htmlspecialchars($prenom));
