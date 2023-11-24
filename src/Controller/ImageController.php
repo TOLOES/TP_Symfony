@@ -32,7 +32,7 @@ class ImageController extends AbstractController
         $response = new Response(file_get_contents($imagePath));
         $response->headers->set('Content-Type', 'image/jpeg');
         $response->headers->set('Content-Disposition', 'inline; filename="' . $file->getFilename() . '"');
-
+      # $response->headers->set('Content-Disposition', 'attachment; filename="' . $file->getFilename() . '"');
         return $response;
     }
 
