@@ -19,20 +19,31 @@ class OpenCloseKernelControllerListener
     {
         $controller = $event->getController();
 
-        // Si le contrôleur n'est pas un tableau ou un objet, on ne fait rien
         if (!is_array($controller)) {
             return;
         }
 
         $routeName = $event->getRequest()->attributes->get('_route');
-        $route = $this->router->getRouteCollection()->get($routeName);
-        $options = $route->getOption('ouverture');
 
-        [$heureOuverture, $heureFermeture] = explode('-', $options);
-        $heureActuelle = (int) date('G');
+        // Vérifiez si le nom de la route est non null
+        if ($routeName) {
+            $route = $this->router->getRouteCollection()->get($routeName);
 
-        if ($heureActuelle < $heureOuverture || $heureActuelle > $heureFermeture) {
-            $event->setController([new ClientController(), 'ferme']);
+            if ($route && $route->hasOption('ouverture')) {
+                $options = $route->getOption('ouverture');
+                $optionsArray = explode('-', $options);
+
+                if (count($optionsArray) === 2) {
+                    [$heureOuverture, $heureFermeture] = $optionsArray;
+                    $heureActuelle = (int) date('G');
+
+                    if ($heureActuelle < $heureOuverture || $heureActuelle > $heureFermeture) {
+                        $event->setController([new ClientController(), 'ferme']);
+                    }
+                } else {
+                    throw new \Exception("L'option ouverture doit être de la forme '8-17'");
+                }
+            }
         }
     }
 }
