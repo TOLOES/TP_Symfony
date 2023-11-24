@@ -7,4 +7,9 @@ client :
 image_data:
     path: /img/data/{imageName}
     controller: App\Controller\ImageController::affiche
+clientAccess:
+    path: /client
+    controller: App\Controller\ClientController::home
+    options:
+        ouverture: '9-17'
 
