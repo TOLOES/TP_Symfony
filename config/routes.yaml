@@ -1,6 +1,0 @@
-controllers:
-    resource: ../src/Controller/
-    type: attribute
-client :
-    path : /client/prenom/{prenom}
-    controller : App\Controller\ClientController::info
