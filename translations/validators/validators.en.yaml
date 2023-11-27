@@ -1,0 +1,3 @@
+user.password.mismatch: "The passwords must be the same."
+user.login.length.min: "The login must contain at least 3 characters."
+user.password.regex: "The password must contain at least 8 characters, including at least one letter and one number."

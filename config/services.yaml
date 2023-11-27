@@ -20,6 +20,10 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\EventListener\LanguageListener:
+        tags:
+            - { name: 'kernel.event_listener'}
+
     App\EventListener\OpenCloseKernelControllerListener:
         arguments:
             $router: '@router'
