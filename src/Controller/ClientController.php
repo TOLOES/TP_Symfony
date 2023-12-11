@@ -20,4 +20,19 @@ class ClientController
 
         return new Response("Prénom : " . htmlspecialchars($prenom));
     }
+
+    /**
+     * Route ouverte seulement de 8h à 17h, sinon on exécute ferme
+     * @return Response
+     */
+
+    public function home() : Response
+    {
+        return new Response("Bonjour");
+    }
+
+    public function ferme() : Response
+    {
+        return new Response("Nous sommes fermés !");
+    }
 }
